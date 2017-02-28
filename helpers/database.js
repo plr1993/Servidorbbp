@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var db=null;
-
 module.exports = function () {
     if(!db) {    
          db = mysql.createPool({
