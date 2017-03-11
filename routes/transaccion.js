@@ -7,64 +7,64 @@ var mySecretKey=process.env.JWT_SECRETKEY;
 
 router.get('/',comprobacionjwt,function(req,res){
 	var data = {
-		"Mensaje":""
+		"Transaccion":""
 	};
 	db.getConnection(function(err, connection) {
 		if (err) throw err;
-        var Id_mensaje = connection.escape(req.query.mensaje);
-		var Id_chat_mensaje = connection.escape(req.query.id_chat_mensaje);
-        var Id_emisor_mensaje = connection.escape(req.query.id_emisor_mensaje);
-		var Id_receptor_mensaje = connection.escape(req.query.id_receptor_mensaje);
-        var Texto_mensaje = connection.escape(req.query.texto_mensaje);
+        var Id_transaccion = connection.escape(req.query.transaccion);
+		var Id_usuario_transaccion = connection.escape(req.query.id_usuario_transaccion);
+        var Id_mascota_transaccion = connection.escape(req.query.id_mascota_transaccion);
+		var Id_usuario_cuidador_transaccion = connection.escape(req.query.Id_usuario_cuidador_transaccion);
+        var Precio_transaccion = connection.escape(req.query.precio_transaccion);
 		var Pagina = connection.escape(req.query.pagina); //Variable que indica que pagina de facturas estamos que se mostraran de 10 en 10
-		var consulta="SELECT * FROM mensaje";
+		var consulta="SELECT * FROM transaccion";
         var i=0;
-        if(Id_receptor_mensaje != 'NULL' || Id_emisor_mensaje != 'NULL' || Texto_mensaje != 'NULL'  || Id_mensaje != 'NULL' || Id_chat_mensaje != 'NULL'){
+        if(Id_usuario_transaccion != 'NULL' || Id_mascota_transaccion != 'NULL' || Id_usuario_cuidador_transaccion != 'NULL'  || Id_transaccion != 'NULL' || Precio_transaccion != 'NULL'){
             console.log("Con el parametro:");
             consulta +=" WHERE ";
-            if(Id_receptor_mensaje != 'NULL'){
-                console.log("Id_receptor_mensaje:"+Id_receptor_mensaje);
+            if(Id_usuario_transaccion != 'NULL'){
+                console.log("Id_usuario_transaccion:"+Id_usuario_transaccion);
                 if (i==1) {
                     consulta  += " AND ";
                     i--;	
                 }
-                consulta  += "Id_receptor_mensaje="+Id_receptor_mensaje;
+                consulta  += "Id_usuario_transaccion="+Id_usuario_transaccion;
                 i++;
             }
-            if(Id_emisor_mensaje != 'NULL'){
-                console.log("Id_emisor_mensaje:"+Id_emisor_mensaje);
+            if(Id_mascota_transaccion != 'NULL'){
+                console.log("Id_mascota_transaccion:"+Id_mascota_transaccion);
                 if (i==1) {
                     consulta  += " AND ";
                     i--;	
                 }
-                consulta  += "Id_emisor_mensaje="+Id_emisor_mensaje;
+                consulta  += "Id_mascota_transaccion="+Id_mascota_transaccion;
                 i++;
             }
-            if(Texto_mensaje != 'NULL'){
-                console.log("Texto_mensaje:"+Texto_mensaje);
+            if(Id_usuario_cuidador_transaccion != 'NULL'){
+                console.log("Id_usuario_cuidador_transaccion:"+Id_usuario_cuidador_transaccion);
                 if (i==1) {
                     consulta  += " AND ";
                     i--;	
                 }
-                consulta  += "Texto_mensaje="+Texto_mensaje;
+                consulta  += "Id_usuario_cuidador_transaccion="+Id_usuario_cuidador_transaccion;
                 i++;
             }
-            if(Id_mensaje != 'NULL'){
-                console.log("Id_mensaje:"+Id_mensaje);
+            if(Id_transaccion != 'NULL'){
+                console.log("Id_transaccion:"+Id_transaccion);
                 if (i==1) {
                     consulta  += " AND ";
                     i--;	
                 }
-                consulta  += "Id_mensaje="+Id_mensaje;
+                consulta  += "Id_transaccion="+Id_transaccion;
                 i++;
             }
-            if(Id_chat_mensaje != 'NULL'){
-                console.log("Id_chat_mensaje:"+Id_chat_mensaje);
+            if(Precio_transaccion != 'NULL'){
+                console.log("Precio_transaccion:"+Precio_transaccion);
                 if (i==1) {
                     consulta  += " AND ";
                     i--;	
                 }
-                consulta  += "Id_chat_mensaje="+Id_chat_mensaje;
+                consulta  += " Precio_transaccion="+Precio_transaccion;
                 i++;
             }
         }
@@ -82,11 +82,12 @@ router.get('/',comprobacionjwt,function(req,res){
 			}else{
 				console.log("Query OK");
 				if(rows.length != 0){
-					console.log("Devuelvo los mensajes");
-					data["Mensaje"] = rows;
+					console.log("Devuelvo los transacciones");
+					data["Transaccion"] = rows;
 					return res.status(200).json(data);
 				}else{
-					console.log("No hay mensajes...");
+					console.log("No hay transacciones...");
+					data["Transaccion"] = "No hay transacciones";
 					return res.status(204).json({ error: err });
 				}
 			}
@@ -99,80 +100,80 @@ router.get('/',comprobacionjwt,function(req,res){
 router.post('/',comprobacionjwt,function(req,res){
 	db.getConnection(function(err, connection) {
 		if (err) throw err;
-		var Id_chat_mensaje = connection.escape(req.body.id_chat_mensaje);
-        var Id_emisor_mensaje = connection.escape(req.body.id_emisor_mensaje);
-		var Id_receptor_mensaje = connection.escape(req.body.id_receptor_mensaje);
-        var Texto_mensaje = connection.escape(req.body.texto_mensaje);
+		var Id_usuario_transaccion = connection.escape(req.body.id_usuario_transaccion);
+        var Id_mascota_transaccion = connection.escape(req.body.id_mascota_transaccion);
+		var Id_usuario_cuidador_transaccion = connection.escape(req.body.Id_usuario_cuidador_transaccion);
+        var Precio_transaccion = connection.escape(req.body.precio_transaccion);
 		var data = {
-			"Mensaje":""
+			"Transaccion":""
 		};
-		var consulta = "INSERT INTO mensaje (";
+		var consulta = "INSERT INTO transaccion (";
 		var i=0;
-        if(Id_chat_mensaje != 'NULL'){
+        if(Id_usuario_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += ", ";
 				i--;	
 			}
-			consulta  += "Id_chat_mensaje";
+			consulta  += "Id_usuario_transaccion";
 			i++;
 		}
-		if(Id_emisor_mensaje != 'NULL'){
+		if(Id_mascota_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += ", ";
 				i--;	
 			}
-			consulta  += "Id_emisor_mensaje";
+			consulta  += "Id_mascota_transaccion";
 			i++;
 		}
-		if(Id_receptor_mensaje != 'NULL'){
+		if(Id_usuario_cuidador_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += ", ";
 				i--;	
 			}
-			consulta  += "Id_receptor_mensaje";
+			consulta  += "Id_usuario_cuidador_transaccion";
 			i++;
 		}
-        if(Texto_mensaje != 'NULL'){
+        if(Precio_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += ", ";
 				i--;	
 			}
-			consulta  += "Texto_mensaje";
+			consulta  += "Precio_transaccion";
 			i++;
 		}
 		console.log("CONSULTA 1 es"+consulta);
 		consulta=consulta+") VALUES (";
 		i=0;
-		if(Id_chat_mensaje != 'NULL'){
+		if(Id_usuario_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += " , ";
 				i--;	
 			}
-			consulta  += Id_chat_mensaje;
+			consulta  += Id_usuario_transaccion;
 			i++;
 		}
-        if(Id_emisor_mensaje != 'NULL'){
+        if(Id_mascota_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += " , ";
 				i--;	
 			}
-			consulta  += Id_emisor_mensaje;
+			consulta  += Id_mascota_transaccion;
 			i++;
 		}
-		if(Id_receptor_mensaje != 'NULL'){
+		if(Id_usuario_cuidador_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += " , ";
 				i--;	
 			}
-			consulta  += Id_receptor_mensaje;
+			consulta  += Id_usuario_cuidador_transaccion;
 			i++;
 		}
-        if(Texto_mensaje != 'NULL'){
+        if(Precio_transaccion != 'NULL'){
 			if (i==1) {
 				consulta  += " , ";
 				i--;	
 			}
-			consulta  += Texto_mensaje;
+			consulta  += Precio_transaccion;
 			i++;
 		}
 		consulta+=")";
@@ -182,7 +183,7 @@ router.post('/',comprobacionjwt,function(req,res){
 				console.log(err);
                 return res.status(400).json({ error: err });
 			}else{
-				data["Mensaje"] = "Datos insertados correctamente!";
+				data["Transaccion"] = "Datos insertados correctamente!";
 				return res.status(200).json(data);
 			}
 		});
