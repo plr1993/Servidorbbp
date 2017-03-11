@@ -13,8 +13,9 @@ router.post("/", function(req,res,next){
         var password =connection.escape(req.body.password);
         console.log("username es "+username);
         console.log("password es "+password);
+
         //llamamos a la base de datos para ver si el usuario es correcto o no 
-        var consulta="SELECT * from usuarios where Email_usuario="+username+" and Contra_usuario=md5("+password+")";
+        var consulta="SELECT * from usuario where Email_usuario="+username+" and Contra_usuario=md5("+password+")";
         connection.query(consulta, function(err, rows, fields) {
             if(rows!=null && rows.length != 0){ //si es correcto
                 var user=rows[0];
@@ -23,6 +24,7 @@ router.post("/", function(req,res,next){
                 }, mySecretKey, { expiresIn: '168h' });
                 return res.status(200).json(token);  //lo enviamos
             }else{
+                console.log("El usu no existe");
                 return res.status(401).json("El usuario no existe");
             }
         });
