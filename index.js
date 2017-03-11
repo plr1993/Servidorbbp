@@ -8,24 +8,19 @@ var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
 var cors= require('cors');
 //RUTAS
-var productos=(require('./routes/productos'));
-var usuarios=(require('./routes/usuarios')); 
-var tiendas=(require('./routes/tiendas')); 
-var api=(require('./routes/api'));
+var usuario=(require('./routes/usuario')); 
 var acceso=(require('./routes/acceso'));  
-var shopping=require('./routes/shopping');
 var loginjwt=require('./routes/loginjwt');
-var provincias=require('./routes/provincias');
-var comunidades=require('./routes/comunidades');
-var municipios=require('./routes/municipios');
-var facturas=require('./routes/facturas');
+var provincia=require('./routes/provincia');
+var comunidad=require('./routes/comunidad');
+var localidad=require('./routes/localidad');
 var resetpassword=require('./routes/resetpassword');
 var confirmaremail=require('./routes/confirmaremail');
-var ofertas=require('./routes/ofertas');
-var estadisticas=require('./routes/Estadisticas');
-var apiBackup=require('./routes/apiBackup');
-var controlventas=require('./routes/controlventas');
 var contacto=require('./routes/contacto');
+var mascota=require('./routes/mascota');
+var anuncio=require('./routes/anuncio');
+var chat=require('./routes/chat');
+var mensaje=require('./routes/mensaje');
 
 //CORS, PERMITIMOS  ACCESO A LA API SOLO EN ESTAS RUTAS
 var whitelist = [
@@ -56,24 +51,19 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 //USO RUTAS
-app.use('/productos',productos);
-app.use('/usuarios',usuarios);
-app.use('/tiendas',tiendas);
-app.use('/api',api);
+app.use('/usuario',usuario);
 app.use('/acceso',acceso);
-app.use('/shopping',shopping);
 app.use('/loginjwt',loginjwt);
-app.use('/provincias',provincias);
-app.use('/comunidades',comunidades);
-app.use('/municipios',municipios);
-app.use('/facturas',facturas);
+app.use('/provincia',provincia);
+app.use('/comunidad',comunidad);
+app.use('/localidad',localidad);
 app.use('/resetpassword',resetpassword);
-app.use('/ofertas',ofertas);
-app.use('/estadisticas',estadisticas);
 app.use('/confirmaremail',confirmaremail);
-app.use('/store',apiBackup);
-app.use('/controlventas',controlventas);
 app.use('/contacto',contacto);
+app.use('/mascota',mascota);
+app.use('/anuncio',anuncio);
+app.use('/chat',chat);
+app.use('/mensaje',mensaje);
 //Esto es para enviar
 app.get('/', function(req, res) {
     res.send("APPAY SERVIDOR FUNCIONANDO1");

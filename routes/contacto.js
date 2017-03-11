@@ -5,10 +5,8 @@ var db = require('../helpers/database')();
 var comprobacionjwt= require ('../helpers/comprobacionjwt');
 var jwt =require("jsonwebtoken");
 var emailhtml= require ('../emails/htmlcontacto');
-
 var nodemailer = require('nodemailer');
 const nodemailerDkim = require('nodemailer-dkim');
-
 var mySecretKey=process.env.JWT_SECRETKEY;
 
 
@@ -32,8 +30,7 @@ router.post('/',function(req,res){
             from: "<appayoficial@gmail.com>", // sender address
             to: email, //
             subject: "Contacto nuevo", // Subject line
-            html: htmlcorreo
-            
+            html: htmlcorreo  
         }		
         smtpTransport.sendMail(mailOptions, function(error, response){
             if(error){
