@@ -17,10 +17,8 @@ var localidad=require('./routes/localidad');
 var resetpassword=require('./routes/resetpassword');
 var confirmaremail=require('./routes/confirmaremail');
 var contacto=require('./routes/contacto');
-var mascota=require('./routes/mascota');
-var anuncio=require('./routes/anuncio');
-var chat=require('./routes/chat');
-var mensaje=require('./routes/mensaje');
+var interpoint=require('./routes/interpoint');
+
 
 //CORS, PERMITIMOS  ACCESO A LA API SOLO EN ESTAS RUTAS
 var whitelist = [
@@ -60,11 +58,8 @@ app.use('/localidad',localidad);
 app.use('/resetpassword',resetpassword);
 app.use('/confirmaremail',confirmaremail);
 app.use('/contacto',contacto);
-app.use('/mascota',mascota);
-app.use('/anuncio',anuncio);
-app.use('/chat',chat);
-app.use('/mensaje',mensaje);
-//Esto es para enviar
+app.use('/interpoint',interpoint);
+
 app.get('/', function(req, res) {
     res.send("APPAY SERVIDOR FUNCIONANDO1");
 });

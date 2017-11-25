@@ -7,19 +7,19 @@ var mySecretKey=process.env.JWT_SECRETKEY;
 
 router.get('/',comprobacionjwt,function(req,res){
 	var data = {
-		"Mascota":""
+		"InterestPoint":""
 	};
 	db.getConnection(function(err, connection) {
 		if (err) throw err;
-		var Id_mascota = connection.escape(req.query.id_mascota);
-        var Id_usuario_mascota = connection.escape(req.query.id_usuario_mascota);
-		var Tipo_mascota = connection.escape(req.query.tipo_mascota);
-		var Raza_mascota = connection.escape(req.query.raza_mascota);
-        var Nombre_mascota = connection.escape(req.query.nombre_mascota);
-		var Descripcion_mascota = connection.escape(req.query.descripcion_mascota);
-		var Pagina = connection.escape(req.query.pagina); //Variable que indica que pagina de facturas estamos que se mostraran de 10 en 10
-		var consulta="SELECT * FROM mascota"
-        var i=0;
+		var IdPoint  = connection.escape(req.query.idpoint );
+        var NamePoint  = connection.escape(req.query.namepoint );
+		var DescriptionPoint  = connection.escape(req.query.descriptionpoint);
+		var ImagePoint  = connection.escape(req.query.imagepoint);
+        var PodcastPoint  = connection.escape(req.query.podcastpoint);
+		var Latitude  = connection.escape(req.query.latitude);
+		var Longitude  = connection.escape(req.query.longitude);
+		var consulta="SELECT * FROM InterestPoint"
+        /*var i=0;
         if(Nombre_mascota != 'NULL' || Tipo_mascota != 'NULL'  || Raza_mascota != 'NULL' || Id_mascota != 'NULL' || Descripcion_mascota != 'NULL' || Id_usuario_mascota != 'NULL'){
             console.log("Con el parametro:");
             consulta +=" WHERE ";
@@ -85,7 +85,7 @@ router.get('/',comprobacionjwt,function(req,res){
 			consulta += " LIMIT 10 OFFSET "+pags;
 		}
 		console.log("Esta es la consulta a la base de datos:");
-		console.log(consulta);
+		console.log(consulta);*/
 		connection.query(consulta,function(err, rows, fields){
 			if(err){
 				console.log("Error en la query...");
@@ -93,12 +93,12 @@ router.get('/',comprobacionjwt,function(req,res){
 			}else{
 				console.log("Query OK");
 				if(rows.length != 0){
-					console.log("Devuelvo los usuarios");
-					data["Mascota"] = rows;
+					console.log("Devuelvo los puntos de interes");
+					data["InterestPoint"] = rows;
 					return res.status(200).json(data);
 				}else{
-					console.log("No hay usuarios...");
-					data["Mascota"] = 'No hay mascotas';
+					console.log("No hay puntos de interes cerca...");
+					data["InterestPoint"] = 'No hay puntos de interes cerca...';
 					return res.status(204).json({ error: err });
 				}
 			}
@@ -111,12 +111,13 @@ router.get('/',comprobacionjwt,function(req,res){
 router.post('/',comprobacionjwt,function(req,res){
 	db.getConnection(function(err, connection) {
 		if (err) throw err;
-		var Tipo_mascota = connection.escape(req.body.tipo_mascota);
-        var Id_usuario_mascota = connection.escape(req.body.id_usuario_mascota);
-		var Raza_mascota = connection.escape(req.body.raza_mascota);
-        var Nombre_mascota = connection.escape(req.body.nombre_mascota);
-        var Foto_mascota = connection.escape(req.body.foto_mascota);
-		var Descripcion_mascota = connection.escape(req.body.descripcion_mascota);
+		var IdPoint  = connection.escape(req.body.idpoint );
+        var NamePoint  = connection.escape(req.body.namepoint );
+		var DescriptionPoint  = connection.escape(req.body.descriptionpoint);
+		var ImagePoint  = connection.escape(req.body.imagepoint);
+        var PodcastPoint  = connection.escape(req.body.podcastpoint);
+		var Latitude  = connection.escape(req.body.latitude);
+		var Longitude  = connection.escape(req.body.longitude);
 		var data = {
 			"Mascota":""
 		};
