@@ -1,1 +1,34 @@
-{"Errores":1,"Localidad":[{"Id_localidad":1,"Id_provincia_localidad":4,"Id_comunidad_localidad":4,"Nombre_localidad":"Madrid"},{"Id_localidad":2,"Id_provincia_localidad":5,"Id_comunidad_localidad":4,"Nombre_localidad":"Alcala"},{"Id_localidad":3,"Id_provincia_localidad":5,"Id_comunidad_localidad":4,"Nombre_localidad":"Alcorcon"},{"Id_localidad":4,"Id_provincia_localidad":6,"Id_comunidad_localidad":6,"Nombre_localidad":"Alcorcon"},{"Id_localidad":5,"Id_provincia_localidad":7,"Id_comunidad_localidad":7,"Nombre_localidad":"Alcorcon"},{"Id_localidad":6,"Id_provincia_localidad":8,"Id_comunidad_localidad":8,"Nombre_localidad":"Alcorcon"},{"Id_localidad":7,"Id_provincia_localidad":9,"Id_comunidad_localidad":9,"Nombre_localidad":"Alcorcon"},{"Id_localidad":8,"Id_provincia_localidad":9,"Id_comunidad_localidad":9,"Nombre_localidad":"japon"},{"Id_localidad":9,"Id_provincia_localidad":9,"Id_comunidad_localidad":9,"Nombre_localidad":"japon3"},{"Id_localidad":10,"Id_provincia_localidad":10,"Id_comunidad_localidad":9,"Nombre_localidad":"japon3"}]}
+[
+    {
+        "colorName":"Red",
+        "hexValue":"#F44336"
+    },
+    {
+        "colorName":"Pink",
+        "hexValue":"#E91E63"
+    },
+    {
+        "colorName":"Purple",
+        "hexValue":"#9C27B0"
+    },
+    {
+        "colorName":"Deep purple",
+        "hexValue":"#673AB7"
+    },
+    {
+        "colorName":"Indigo",
+        "hexValue":"#3F51B5"
+    },
+    {
+        "colorName":"Blue",
+        "hexValue":"#2196F3"
+    },
+    {
+        "colorName":"Light blue",
+        "hexValue":"#03A9F4"
+    },
+    {
+        "colorName":"Cyan",
+        "hexValue":"#00BCD4"
+    }
+]
