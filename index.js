@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 //RUTAS
 var usuario = (require('./routes/usuario'));
+var usuarior = (require('./routes/t_usuario'));
 var acceso = (require('./routes/acceso'));
 var loginjwt = require('./routes/loginjwt');
 var provincia = require('./routes/provincia');
@@ -50,6 +51,7 @@ app.use(cookieParser());
 
 //USO RUTAS
 app.use('/usuario', usuario);
+app.use('/t_usuario', usuarior);
 app.use('/acceso', acceso);
 app.use('/loginjwt', loginjwt);
 app.use('/provincia', provincia);
