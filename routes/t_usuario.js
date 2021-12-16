@@ -426,7 +426,7 @@ router.post("/subeusuario", function(req, res) {
         console.log(consulta);
         connection.query(consulta, function(err, rows, fields) {
             if (err) {
-                return res.status(400).json("Error al insertar el chollo");
+                return res.status(400).json("Error al insertar el usuario");
             } else {
                 return res.status(200).json("Usuario creado"); //lo enviamos
             }
