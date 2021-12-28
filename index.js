@@ -19,6 +19,7 @@ var resetpassword = require('./routes/resetpassword');
 var confirmaremail = require('./routes/confirmaremail');
 var contacto = require('./routes/contacto');
 var interpoint = require('./routes/interpoint');
+var chollos = (require('./routes/chollos'));
 
 
 //CORS, PERMITIMOS  ACCESO A LA API SOLO EN ESTAS RUTAS
@@ -57,6 +58,7 @@ app.use('/loginjwt', loginjwt);
 app.use('/provincia', provincia);
 app.use('/comunidad', comunidad);
 app.use('/localidad', localidad);
+app.use('/chollos', chollos);
 app.use('/resetpassword', resetpassword);
 app.use('/confirmaremail', confirmaremail);
 app.use('/contacto', contacto);
