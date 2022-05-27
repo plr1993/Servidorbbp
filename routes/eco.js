@@ -17,23 +17,23 @@ router.get('/',function(req,res){
     };
 
     var req = https.request(options, function (res) {
-    var chunks = [];
+        var chunks = [];
 
-    res.on("data", function (chunk) {
-        chunks.push(chunk);
-    });
+        res.on("data", function (chunk) {
+            chunks.push(chunk);
+        });
 
-    res.on("end", function (chunk) {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
-    });
+        res.on("end", function (chunk) {
+            var body = Buffer.concat(chunks);
+            return body.toString();
+        });
 
-    res.on("error", function (error) {
-        console.error(error);
-    });
+        res.on("error", function (error) {
+            console.error(error);
+        });
     });
 
     req.end();
-    });
+});
 
 module.exports = router; 
