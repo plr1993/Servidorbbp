@@ -17,5 +17,36 @@ router.get('/',function(req, res){
   });
   
 });
-
+//Peticion de cambio de contraseña. Se llamará cuando alguien no recuerde su contraseña
+router.get('/kills',function(req, res){
+  var request = require('request');
+  var options = {
+    'method': 'GET',
+    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse',
+    'headers': {
+      'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
+    }
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(JSON.parse(response.body))
+    res.send("Ecoslav ha matado a "+JSON.parse(response.body).data.stats.keyboardMouse.overall.kills+" jugadores en Fortnite");
+  });
+  
+});
+router.get('/img',function(req, res){
+  var request = require('request');
+  var options = {
+    'method': 'GET',
+    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse',
+    'headers': {
+      'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
+    }
+  };
+  request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(JSON.parse(response.body))
+    res.send("<!DOCTYPE html><html><body><img src='"+JSON.parse(response.body).data.image+"'></body></html>");
+  });
+});
 module.exports = router; 
