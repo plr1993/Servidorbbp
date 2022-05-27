@@ -4,37 +4,37 @@ var db = require('../helpers/database')();
 var comprobacionjwt = require('../helpers/comprobacionjwt');
 //Get de locales todos o por id
 router.get('/', comprobacionjwt, function(req, res) {
-    var https = require('follow-redirects').https;
-    var fs = require('fs');
+    var data;
+    db.getConnection(function(err, connection) {
+        if (err) throw err;
+        //console.log("En modulo");
+        var id = connection.escape(req.query.id);
+        var categoria = connection.escape(req.query.categoria);
+        var busqueda = connection.escape(req.query.busqueda);
 
-    var options = {
-    'method': 'GET',
-    'hostname': 'fortnite-api.com',
-    'path': '/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse',
-    'headers': {
-        'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
-    },
-    'maxRedirects': 20
-    };
-
-    var req = https.request(options, function (res) {
-        var chunks = [];
-
-        res.on("data", function (chunk) {
-            chunks.push(chunk);
+        if (id != 'NULL') { //Si en la URI existe se crea la consulta de busqueda por id
+            var consulta = "SELECT * FROM t_Chollo WHERE ID_Chollo=" + id;
+        } else if (busqueda != 'NULL') { //Si en la URI existe se crea la consulta de busqueda en la descripcion y el titulo
+            var consulta = "SELECT * FROM t_Chollo WHERE Titulo LIKE '%" + busqueda + "%' OR Descripcion LIKE '%" + busqueda + "%' ";
+        } else if (categoria != 'NULL') { //Si en la URI existe se crea la consulta de busqueda por id
+            var consulta = "SELECT * FROM t_Chollo WHERE ID_Categoria_1 =" + categoria + " OR ID_Categoria_2 =" + categoria + " OR ID_Categoria_3 =" + categoria + " OR ID_Categoria_4 =" + categoria + " OR ID_Categoria_5 =" + categoria + " OR ID_Categoria_6 =" + categoria;
+        } else { //Si no muestra todos los parkings
+            var consulta = "SELECT * FROM t_Chollo";
+        }
+        //console.log("Consulta: "+consulta);
+        connection.query(consulta, function(err, rows, fields) {
+            console.log(rows);
+            if (rows.length != 0) {
+                data = rows;
+                res.status(200);
+            } else {
+                data = 'No hay Chollos'
+                res.status(204);
+            }
+            res.json(data);
         });
-
-        res.on("end", function (chunk) {
-            var body = Buffer.concat(chunks);
-            return body.toString();
-        });
-
-        res.on("error", function (error) {
-            console.error(error);
-        });
+        connection.release();
     });
-
-    req.end();
 });
 
 router.post("/subechollo", function(req, res, next) {

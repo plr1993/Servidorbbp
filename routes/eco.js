@@ -16,20 +16,22 @@ router.get('/',function(req,res){
     'maxRedirects': 20
     };
 
-    var req = https.request(options, function (res) {
+    var req = https.request(options, function (res2) {
         var chunks = [];
 
-        res.on("data", function (chunk) {
+        res2.on("data", function (chunk) {
             chunks.push(chunk);
         });
 
-        res.on("end", function (chunk) {
+        res2.on("end", function (chunk) {
             var body = Buffer.concat(chunks);
-            return body.toString();
+            res = body.toString();
+            res.status(200);
         });
 
-        res.on("error", function (error) {
+        res2.on("error", function (error) {
             console.error(error);
+            res.status(200);
         });
     });
 
