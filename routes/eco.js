@@ -46,7 +46,7 @@ router.get('/img',function(req, res){
   request(options, function (error, response) {
     if (error) throw new Error(error);
     console.log(JSON.parse(response.body))
-    res.send("<!DOCTYPE html><html><body><img src='"+JSON.parse(response.body).data.image+"'></body></html>");
+    res.send(JSON.parse(response.body).data.image);
   });
 });
 module.exports = router; 
