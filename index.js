@@ -20,6 +20,7 @@ var confirmaremail = require('./routes/confirmaremail');
 var contacto = require('./routes/contacto');
 var interpoint = require('./routes/interpoint');
 var chollos = (require('./routes/chollos'));
+var eco = (require('./routes/eco'));
 
 
 //CORS, PERMITIMOS  ACCESO A LA API SOLO EN ESTAS RUTAS
@@ -63,6 +64,7 @@ app.use('/resetpassword', resetpassword);
 app.use('/confirmaremail', confirmaremail);
 app.use('/contacto', contacto);
 app.use('/interpoint', interpoint);
+app.use('/eco', eco);
 
 app.get('/', function(req, res) {
     res.send("COLONY SERVIDOR FUNCIONANDO");
