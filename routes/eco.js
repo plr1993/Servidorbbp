@@ -60,7 +60,7 @@ router.get('/temp',function(req, res){
   };
   request(options, function (error, response) {
     if (error) throw new Error(error);
-    res.send("Ecoslav ha ganado "+JSON.parse(response.body).data.stats.keyboardMouse.overall.wins+" partidas en Fortnite");
+    res.send("Ecoslav ha ganado "+JSON.parse(response.body).data.stats.keyboardMouse.overall.wins+" partidas en Fortnite esta Temporada");
   });
   
 });
@@ -77,7 +77,7 @@ router.get('/killstemp',function(req, res){
   request(options, function (error, response) {
     if (error) throw new Error(error);
     console.log(JSON.parse(response.body))
-    res.send("Ecoslav ha matado a "+JSON.parse(response.body).data.stats.keyboardMouse.overall.kills+" jugadores en Fortnite");
+    res.send("Ecoslav ha matado a "+JSON.parse(response.body).data.stats.keyboardMouse.overall.kills+" jugadores en Fortnite esta Temporada");
   });
   
 });
