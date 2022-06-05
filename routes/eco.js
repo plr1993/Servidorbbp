@@ -53,7 +53,7 @@ router.get('/temp',function(req, res){
   var request = require('request');
   var options = {
     'method': 'GET',
-    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&season',
+    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&timeWindow=season',
     'headers': {
       'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
     }
@@ -69,7 +69,7 @@ router.get('/killstemp',function(req, res){
   var request = require('request');
   var options = {
     'method': 'GET',
-    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&season',
+    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&timeWindow=season',
     'headers': {
       'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
     }
@@ -85,7 +85,7 @@ router.get('/imgtemp',function(req, res){
   var request = require('request');
   var options = {
     'method': 'GET',
-    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&season',
+    'url': 'https://fortnite-api.com/v2/stats/br/v2?name=EcoslavTwitch&image=keyboardMouse&timeWindow=season',
     'headers': {
       'Authorization': 'b6b08a09-6d58-4e1c-9d90-74f3e0cdf718'
     }
